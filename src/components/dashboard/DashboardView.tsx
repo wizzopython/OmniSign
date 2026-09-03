@@ -60,129 +60,129 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   };
 
   return (
-    <div className="space-y-6 pb-12 animate-in fade-in duration-200">
+    <div className="space-y-4 sm:space-y-6 pb-12 animate-in fade-in duration-200 w-full max-w-full overflow-x-hidden">
       {/* 1. Top Interactive Live Showcase Bar */}
-      <div className="p-3.5 rounded-2xl bg-white border border-blue-100 shadow-xs flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+      <div className="p-3 sm:p-4 rounded-2xl bg-white border border-[#e8e4dc] shadow-2xs flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 w-full">
         <div className="flex items-center gap-2">
-          <span className="p-1.5 rounded-lg bg-blue-50 text-blue-600 border border-blue-100">
+          <span className="p-1.5 rounded-lg bg-orange-50 text-orange-600 border border-orange-200 shrink-0">
             <Sparkles className="w-4 h-4" />
           </span>
           <div>
-            <span className="text-xs font-extrabold text-slate-900 block font-display">
+            <span className="text-xs font-bold text-stone-900 block font-display">
               Interactive Live Scenarios
             </span>
-            <span className="text-[11px] text-slate-500">
-              Click to instantly change all connected displays & player layouts
+            <span className="text-[11px] text-stone-500">
+              1-Click test real-world digital signage layouts
             </span>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 w-full md:w-auto">
           <button
             onClick={() => handleScenarioChange('retail')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
               activeScenario === 'retail'
-                ? 'bg-blue-600 text-white shadow-xs'
-                : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200'
+                ? 'bg-orange-600 text-white shadow-xs'
+                : 'bg-stone-50 hover:bg-stone-100 text-stone-700 border border-stone-200'
             }`}
           >
-            <ShoppingBag className="w-3.5 h-3.5" />
-            <span>Retail Wall</span>
+            <ShoppingBag className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">Retail Wall</span>
           </button>
 
           <button
             onClick={() => handleScenarioChange('restaurant')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
               activeScenario === 'restaurant'
-                ? 'bg-blue-600 text-white shadow-xs'
-                : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200'
+                ? 'bg-orange-600 text-white shadow-xs'
+                : 'bg-stone-50 hover:bg-stone-100 text-stone-700 border border-stone-200'
             }`}
           >
-            <UtensilsCrossed className="w-3.5 h-3.5" />
-            <span>Menu Board</span>
+            <UtensilsCrossed className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">Menu Board</span>
           </button>
 
           <button
             onClick={() => handleScenarioChange('corporate')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
               activeScenario === 'corporate'
-                ? 'bg-blue-600 text-white shadow-xs'
-                : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200'
+                ? 'bg-orange-600 text-white shadow-xs'
+                : 'bg-stone-50 hover:bg-stone-100 text-stone-700 border border-stone-200'
             }`}
           >
-            <Building2 className="w-3.5 h-3.5" />
-            <span>Corporate L-Bar</span>
+            <Building2 className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">Corporate L-Bar</span>
           </button>
 
           <button
             onClick={() => handleScenarioChange('emergency')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
               activeScenario === 'emergency'
                 ? 'bg-rose-600 text-white shadow-xs animate-pulse'
                 : 'bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200'
             }`}
           >
-            <AlertTriangle className="w-3.5 h-3.5" />
-            <span>Emergency Alert</span>
+            <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">Emergency Alert</span>
           </button>
         </div>
       </div>
 
       {/* 2. Signature Hero Bento Capsule */}
-      <div className="relative overflow-hidden bento-hero p-6 sm:p-7">
-        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+      <div className="relative overflow-hidden bento-hero p-4 sm:p-7 w-full">
+        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-5 sm:gap-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold mb-3 shadow-2xs">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-orange-50 border border-orange-200 text-orange-800 text-[11px] font-bold mb-2.5 shadow-2xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>OmniSign OS • {screens.length} Displays Mesh Connected</span>
+              <span>OmniSign OS • {screens.length} Displays Online</span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight font-display">
+            <h1 className="text-xl sm:text-3xl font-black text-stone-900 tracking-tight font-display">
               Cloud Digital Signage Platform
             </h1>
 
-            <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-              Design multi-zone 4K split-screen canvases, automate dayparting schedules, and manage live hardware displays in real time.
+            <p className="text-xs sm:text-sm text-stone-600 mt-1.5 sm:mt-2 leading-relaxed">
+              Design multi-zone 4K split-screen canvases, schedule automated dayparting rotations, and manage live hardware displays.
             </p>
           </div>
 
           {/* Action Hub */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 shrink-0">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full lg:w-auto shrink-0">
             <button
               onClick={handleSimulateNewDisplay}
-              className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 text-xs font-bold shadow-2xs transition-all hover:scale-102"
-              title="Add simulated live hardware display"
+              className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 text-xs font-bold transition-all"
+              title="Add simulated live display"
             >
-              <Monitor className="w-4 h-4 text-emerald-600" />
-              <span>+ Simulate TV Screen</span>
+              <Monitor className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>+ Simulate Screen</span>
             </button>
 
             <button
               onClick={onOpenPairingModal}
-              className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-xs transition-all hover:scale-102"
+              className="flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold shadow-xs transition-all"
             >
-              <PlusCircle className="w-4 h-4" />
+              <PlusCircle className="w-4 h-4 shrink-0" />
               <span>Pair Display PIN</span>
             </button>
 
             <button
               onClick={() => setActiveTab('publish')}
-              className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 text-xs font-bold shadow-2xs transition-all"
+              className="flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-white hover:bg-stone-50 border border-stone-200 text-stone-800 text-xs font-bold shadow-2xs transition-all"
             >
-              <Send className="w-4 h-4 text-blue-600" />
+              <Send className="w-4 h-4 text-orange-600 shrink-0" />
               <span>Deploy Layout</span>
             </button>
           </div>
         </div>
 
-        {/* Live Network Broadcast Marquee Ribbon inside Hero */}
-        <div className="mt-5 pt-3.5 border-t border-blue-100 flex items-center gap-3 overflow-hidden text-xs">
-          <span className="px-2 py-0.5 rounded-md bg-blue-600 text-white font-extrabold text-[10px] tracking-wider uppercase shrink-0 font-mono flex items-center gap-1">
+        {/* Live Network Broadcast Marquee Ribbon */}
+        <div className="mt-4 sm:mt-5 pt-3 border-t border-[#eadfc9] flex items-center gap-2 overflow-hidden text-xs w-full">
+          <span className="px-2 py-0.5 rounded-md bg-orange-600 text-white font-extrabold text-[9px] sm:text-[10px] tracking-wider uppercase shrink-0 font-mono flex items-center gap-1">
             <Radio className="w-3 h-3 animate-pulse" /> Network Feed
           </span>
-          <div className="overflow-hidden whitespace-nowrap text-slate-600 font-medium">
+          <div className="overflow-hidden whitespace-nowrap text-stone-600 font-medium flex-1">
             <div className="animate-marquee inline-block font-semibold">
-              ⚡ LIVE BROADCAST: {screens.length} displays online • 4K video feeds syncing at 60 FPS • Edge CDN latency 18ms • Proof-of-play cryptographically signed
+              ⚡ LIVE BROADCAST: {screens.length} displays online • 4K video feeds syncing at 60 FPS • Edge CDN latency 18ms • Next scheduled rotation in 12 mins
             </div>
           </div>
         </div>

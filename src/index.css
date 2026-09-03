@@ -1,11 +1,17 @@
 @import "tailwindcss";
 
 @layer base {
-  body {
-    background-color: #f8fafc;
-    color: #0f172a;
-    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
-    letter-spacing: -0.012em;
+  *, ::before, ::after {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    background-color: #fcfaf7;
+    color: #1c1917;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.01em;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -13,55 +19,62 @@
     letter-spacing: -0.02em;
   }
 
-  code, pre, .font-mono {
-    font-family: 'JetBrains Mono', monospace;
+  .font-serif-display {
+    font-family: 'Instrument Serif', Georgia, serif;
   }
 }
 
-/* Crisp Light Bento Cards */
+/* Option D: Warm Notion Editorial & Tactile Soft Bento Cards */
 .bento-card {
   background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  border: 1px solid #e8e4dc;
+  box-shadow: 
+    0 1px 2px 0 rgba(28, 25, 23, 0.03),
+    0 4px 12px 0 rgba(28, 25, 23, 0.02);
   border-radius: 1.25rem;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 100%;
 }
 
 .bento-card:hover {
-  border-color: #cbd5e1;
-  box-shadow: 0 10px 20px -3px rgba(15, 23, 42, 0.06), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+  border-color: #d6cfc4;
+  box-shadow: 
+    0 8px 20px -4px rgba(28, 25, 23, 0.06),
+    0 2px 6px -2px rgba(28, 25, 23, 0.04);
   transform: translateY(-2px);
 }
 
 .bento-hero {
-  background: linear-gradient(135deg, #ffffff 0%, #f8faff 60%, #eef4ff 100%);
-  border: 1px solid #dbeafe;
-  box-shadow: 0 4px 20px -2px rgba(37, 99, 235, 0.06);
+  background: linear-gradient(135deg, #ffffff 0%, #faf6ef 60%, #fef3e7 100%);
+  border: 1px solid #eadfc9;
+  box-shadow: 0 4px 20px -2px rgba(234, 88, 12, 0.05);
   border-radius: 1.5rem;
+  max-width: 100%;
 }
 
-/* Designer White/Silver Display Frame (Apple Studio Display style) */
-.silver-tv-frame {
-  background: #f1f5f9;
-  border: 4px solid #e2e8f0;
+/* Warm Sand / Designer TV Frame */
+.warm-tv-frame {
+  background: #292524;
+  border: 4px solid #d6cfc4;
   border-radius: 14px;
-  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 25px -5px rgba(28, 25, 23, 0.12);
+  max-width: 100%;
 }
 
-.silver-tv-stand {
+.warm-tv-stand {
   width: 60px;
   height: 4px;
-  background: #cbd5e1;
+  background: #a8a29e;
   border-radius: 0 0 4px 4px;
   margin: 0 auto;
 }
 
-/* Floating Light Island Navigation */
+/* Floating Navigation Island */
 .nav-island {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e8e4dc;
 }
 
 /* Ticker Marquee */
@@ -76,21 +89,21 @@
   animation: marquee 22s linear infinite;
 }
 
-/* Custom crisp light scrollbar */
+/* Custom warm scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #f7f4ee;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #d6cfc4;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #a8a29e;
 }
