@@ -10,7 +10,16 @@ import {
   Sparkles,
   ExternalLink,
   Radio,
-  Search
+  Menu,
+  X,
+  LayoutDashboard,
+  MonitorSmartphone,
+  Layers,
+  FolderKanban,
+  CalendarClock,
+  Send,
+  Users,
+  BarChart3
 } from 'lucide-react';
 import { UserRole } from '../../types/signage';
 import { getRoleBadge } from '../../utils/helpers';
@@ -30,12 +39,14 @@ export const Navbar: React.FC<NavbarProps> = ({
     screens, 
     resetAllToDefaults,
     clearEmergencyBroadcast,
+    activeTab,
     setActiveTab,
     analytics
   } = useSignage();
 
   const [roleDropdownOpen, setRoleDropdownOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const hasEmergencyActive = screens.some(s => s.emergencyAlertActive);
   const currentRoleBadge = getRoleBadge(currentUser.role);
@@ -47,28 +58,49 @@ export const Navbar: React.FC<NavbarProps> = ({
     { role: 'viewer', title: 'Viewer', desc: 'Read-only access' },
   ];
 
+  const mobileNavLinks = [
+    { id: 'dashboard', label: 'Overview', icon: <LayoutDashboard className="w-4 h-4" /> },
+    { id: 'screens', label: 'Displays', icon: <MonitorSmartphone className="w-4 h-4" /> },
+    { id: 'layouts', label: 'Canvas Studio', icon: <Layers className="w-4 h-4" /> },
+    { id: 'media', label: 'Media Assets', icon: <FolderKanban className="w-4 h-4" /> },
+    { id: 'schedules', label: 'Schedules', icon: <CalendarClock className="w-4 h-4" /> },
+    { id: 'publish', label: 'Deploy & Publish', icon: <Send className="w-4 h-4" /> },
+    { id: 'player', label: 'Live Player', icon: <Tv className="w-4 h-4" /> },
+    { id: 'analytics', label: 'Proof of Play', icon: <BarChart3 className="w-4 h-4" /> },
+    { id: 'rbac', label: 'User Roles', icon: <Users className="w-4 h-4" /> }
+  ];
+
   return (
-    <header className="sticky top-0 z-40 h-16 border-b border-slate-200 bg-white px-4 lg:px-6 flex items-center justify-between shadow-xs">
-      {/* Brand */}
-      <div className="flex items-center gap-3">
+    <header className="sticky top-0 z-40 h-16 border-b border-slate-200 bg-white/95 backdrop-blur-md px-3 sm:px-6 flex items-center justify-between shadow-xs">
+      {/* Brand & Mobile Hamburger */}
+      <div className="flex items-center gap-2 sm:gap-3">
+        {/* Mobile Hamburger Toggle */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="p-1.5 rounded-lg text-slate-600 hover:bg-slate-100 md:hidden"
+          aria-label="Toggle mobile menu"
+        >
+          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+
         <div 
           onClick={() => setActiveTab('dashboard')}
-          className="flex items-center gap-2.5 cursor-pointer group"
+          className="flex items-center gap-2 cursor-pointer group"
         >
-          <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-blue-600 text-white font-bold shadow-sm shadow-blue-500/30 group-hover:bg-blue-700 transition-colors">
-            <Tv className="w-5 h-5" />
+          <div className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-600 text-white font-bold shadow-sm shadow-blue-500/30 group-hover:bg-blue-700 transition-colors">
+            <Tv className="w-4 h-4 sm:w-5 sm:h-5" />
           </div>
           <div>
             <span className="font-extrabold text-base text-slate-900 tracking-tight">
               Omni<span className="text-blue-600">Sign</span>
             </span>
-            <span className="ml-2 text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
+            <span className="ml-1.5 text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
               CMS
             </span>
           </div>
         </div>
 
-        <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-[11px] text-slate-600 font-medium">
+        <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-[11px] text-slate-600 font-medium ml-2">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
           <span>{analytics.onlineScreens}/{analytics.totalScreens} Displays Online</span>
           <span className="text-slate-300">•</span>
@@ -77,44 +109,44 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Right Controls */}
-      <div className="flex items-center gap-2 sm:gap-3">
+      <div className="flex items-center gap-1.5 sm:gap-3">
         {/* Emergency Alert */}
         {hasEmergencyActive ? (
           <button
             onClick={() => clearEmergencyBroadcast()}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold transition-all shadow-xs"
+            className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold transition-all shadow-xs"
           >
             <AlertTriangle className="w-3.5 h-3.5 animate-bounce" />
-            <span>Clear Emergency</span>
+            <span className="hidden sm:inline">Clear Emergency</span>
           </button>
         ) : (
           <button
             onClick={onOpenEmergencyModal}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 text-xs font-semibold transition-colors"
+            className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 text-xs font-semibold transition-colors"
           >
             <Radio className="w-3.5 h-3.5 text-rose-600" />
-            <span className="hidden sm:inline">Emergency Alert</span>
+            <span className="hidden sm:inline">Emergency</span>
           </button>
         )}
 
         {/* Live Player Button */}
         <button
           onClick={onOpenPlayerModal}
-          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-xs transition-colors"
+          className="flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-xs transition-colors"
         >
           <Play className="w-3.5 h-3.5 fill-current" />
-          <span>Launch Player</span>
+          <span className="hidden sm:inline">Player</span>
         </button>
 
         {/* Role Switcher */}
         <div className="relative">
           <button
             onClick={() => setRoleDropdownOpen(!roleDropdownOpen)}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-medium transition-colors"
+            className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-medium transition-colors"
           >
             <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
-            <span className={`px-1.5 py-0.2 rounded text-[11px] font-bold border ${currentRoleBadge.badgeClass}`}>
-              {currentRoleBadge.label}
+            <span className={`px-1.5 py-0.2 rounded text-[10px] sm:text-[11px] font-bold border ${currentRoleBadge.badgeClass}`}>
+              {currentRoleBadge.label.split(' ')[0]}
             </span>
             <ChevronDown className="w-3 h-3 text-slate-400" />
           </button>
@@ -199,6 +231,36 @@ export const Navbar: React.FC<NavbarProps> = ({
           )}
         </div>
       </div>
+
+      {/* Mobile Drawer Menu Dropdown */}
+      {mobileMenuOpen && (
+        <div className="md:hidden absolute top-16 left-0 right-0 bg-white border-b border-slate-200 shadow-xl p-3 z-50 space-y-1 animate-in slide-in-from-top-2 duration-150">
+          <div className="grid grid-cols-2 gap-1.5 pb-2 border-b border-slate-100">
+            {mobileNavLinks.map(link => {
+              const isActive = activeTab === link.id;
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => {
+                    setActiveTab(link.id);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`flex items-center gap-2 p-2 rounded-xl text-xs font-semibold transition-colors ${
+                    isActive ? 'bg-blue-600 text-white' : 'text-slate-700 hover:bg-slate-50'
+                  }`}
+                >
+                  {link.icon}
+                  <span className="truncate">{link.label}</span>
+                </button>
+              );
+            })}
+          </div>
+          <div className="pt-2 flex items-center justify-between text-[11px] text-slate-500 px-1">
+            <span>Online Displays: {analytics.onlineScreens}/{analytics.totalScreens}</span>
+            <span className="font-bold text-emerald-600 font-mono">{analytics.uptimePercent}% Uptime</span>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
