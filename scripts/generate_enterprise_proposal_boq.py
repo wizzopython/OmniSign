@@ -192,10 +192,8 @@ def create_full_proposal_document():
     add_body("OmniSign Cloud is engineered specifically for physical commercial displays (Smart TVs, LED Video Walls, Portrait Totems, Outdoor Billboards) that run in borderless 4K/Full HD Fullscreen 24/7/365.")
     
     add_callout([
-        "• Real-Time WebSocket Synchronization: When an administrator changes a layout or publishes a new ad on the cloud dashboard, all target screens receive instant WebSocket push events and update within 500 milliseconds without requiring manual screen reboots.",
-        "• Standalone Webview & Native Player URL: Any display running Android TV, Linux, Samsung Tizen, LG webOS, or Windows can load the player via `?view=player&screen=[PIN/ID]` in fullscreen mode.",
-        "• Offline Resilience (Edge Caching): All 4K video reels and images are downloaded locally to the hardware media player storage. If the internet connection drops, the screen continues seamless playback with zero blackouts or buffering.",
-        "• Dynamic Multi-Zone Split: Divide screens into independent regions (e.g. 70% 4K Video, 30% Promo Graphic, Bottom Live News Ticker & Weather)."
+        "• Instant Cloud Synchronization: Displays receive live content updates and layout changes in real time (<500ms) with support for multi-zone split-screen playback.",
+        "• 24/7 Offline Playback Guarantee: Media assets are cached locally on each device, ensuring non-stop fullscreen broadcast with zero blackouts even during internet outages."
     ], title="HOW REAL-TIME FULLSCREEN OPERATION WORKS", bg_hex="EFF6FF", border_hex="2563EB")
 
     # -------------------------------------------------------------
@@ -384,8 +382,13 @@ def create_full_proposal_document():
 
     # Save Document
     output_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "OmniSign_Enterprise_Commercial_Proposal_and_BOQ.docx"))
-    doc.save(output_path)
-    print(f"Successfully generated: {output_path}")
+    try:
+        doc.save(output_path)
+        print(f"Successfully generated: {output_path}")
+    except PermissionError:
+        alt_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "OmniSign_Enterprise_Commercial_Proposal_and_BOQ_v2.docx"))
+        doc.save(alt_path)
+        print(f"File was open in Word. Successfully saved to updated copy: {alt_path}")
 
 if __name__ == "__main__":
     create_full_proposal_document()
